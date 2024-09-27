@@ -23,6 +23,7 @@
 - [googleDrive image store](./src/utils/googleDrive.ts) (./googleKey.json)
 - [cookie auth](./src/controllers/auth/user.ts)
 - environment variables (./.env)
+
   PORT = port for express
 
   SECRET_KEY = secret key for jwt
@@ -63,6 +64,7 @@
   - [sources and config](./client/src/i18n/)
   - [types](./client/src/types/i18n/)
 - environment variables (./client/.env)
+
   REACT_APP_SERVER = express server url
 
   REACT_APP_GOOGLE = https://lh3.googleusercontent.com/d/
