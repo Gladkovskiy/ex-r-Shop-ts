@@ -24,12 +24,19 @@
 - [cookie auth](./src/controllers/auth/user.ts)
 - environment variables (./.env)
   PORT = port for express
+
   SECRET_KEY = secret key for jwt
+
   AUTH_DB = key for connection
+
   PRODUCT_SETTINGS_DB = key for connection
+
   PRODUCTS_DB = key for connection
+
   COMPANY_MAIL = mail for nodemailer
+
   MAIL_PASS = mail password
+
 - [PM2 config](./ecosystem.config.js)
 - docker
   - [dockerfile](./docker/Dockerfile)
@@ -57,4 +64,5 @@
   - [types](./client/src/types/i18n/)
 - environment variables (./client/.env)
   REACT_APP_SERVER = express server url
+
   REACT_APP_GOOGLE = https://lh3.googleusercontent.com/d/
