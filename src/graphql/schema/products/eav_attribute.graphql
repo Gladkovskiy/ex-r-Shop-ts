@@ -1,0 +1,39 @@
+type Products_eav_attribute_values {
+  value: String!
+  description: DescriptionLang!
+}
+
+type Products_eav_attribute {
+  _id: ObjectId!
+  group: String!
+  attr_name: String!
+  description: DescriptionLang!
+  values: [Products_eav_attribute_values!]
+}
+
+input Products_eav_attribute_valuesInput {
+  value: String!
+  description: DescriptionLang_add!
+}
+
+input Products_eav_attributeInput {
+  group: String!
+  attr_name: String!
+  description: DescriptionLang_add!
+  values: [Products_eav_attribute_valuesInput!]
+}
+
+type Query {
+  products_eav_attribute_get(group: String!): [Products_eav_attribute!]!
+}
+
+type Mutation {
+  products_eav_attribute_add(
+    attr: Products_eav_attributeInput!
+  ): Products_eav_attribute!
+  products_eav_attribute_update(
+    id: ObjectId
+    values: [Products_eav_attribute_valuesInput!]
+  ): Products_eav_attribute!
+  products_eav_attribute_delete(id: ObjectId): IdResponse
+}

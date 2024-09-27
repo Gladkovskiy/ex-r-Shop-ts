@@ -1,0 +1,30 @@
+{
+  "searchBar": {
+    "search": "Search",
+    "looking for": "I'm looking for...",
+    "Nothing found...": "Nothing found...",
+    "Search for products by the word": "Search for products by the word:",
+    "Categories": "Categories:"
+  },
+  "userModal": {
+    "Personal Area": "Personal Area",
+    "Exit": "Exit"
+  },
+  "Basket": {
+    "Basket": "Basket",
+    "Checkout": "Checkout",
+    "Total": "Total",
+    "Price": "Price",
+    "delete product": "delete product",
+    "the basket is empty": "The basket is empty...",
+    "but its never too late to fix it": "But it's never too late to fix it :)"
+  },
+  "Order": {
+    "Ordering of the order": "Ordering of the order",
+    "Back": "Back",
+    "Confirm the order": "Confirm the order",
+    "Thanks for your order": "Thanks for your order",
+    "Our operator will contact you to confirm the order": "Our operator will contact you to confirm the order",
+    "Continue purchases": "Continue purchases"
+  }
+}

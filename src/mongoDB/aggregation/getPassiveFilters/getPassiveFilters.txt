@@ -1,0 +1,265 @@
+!!!! node 
+[
+  {
+    '$match': {
+      'group': 'Пылесос'
+    }
+  }, {
+    $match: {
+      attr_name: "Цена",
+    },
+  },
+  {
+    $addFields: {
+      price: {
+        $toInt: "$attr_value.value",
+      },
+    },
+  },
+  {
+    $match: {
+      price: {
+        $gte: 100,
+        $lte: 6000,
+      },
+    },
+  }, {
+    '$lookup': {
+      'from': 'eav_values', 
+      'localField': 'product_id', 
+      'foreignField': 'product_id', 
+      'as': 'result'
+    }
+  }, {
+    '$unwind': {
+      'path': '$result'
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$result'
+    }
+  }, {
+    '$match': {
+      '$or': [
+        {
+          'attr_name': 'Бренд', 
+          'attr_value.value': 'Mystery'
+        }, {
+          'attr_name': 'Тип уборки', 
+          'attr_value.value': 'Сухая'
+        }, {
+          'attr_name': 'Тип уборки', 
+          'attr_value.value': 'Паром'
+        }
+      ]
+    }
+  }, {
+    '$group': {
+      '_id': '$product_id', 
+      'attr': {
+        '$push': '$attr_name'
+      }
+    }
+  }, {
+    '$match': {
+      'attr': {
+        '$all': [
+          'Бренд', 'Тип уборки'
+        ]
+      }
+    }
+  }, {
+    '$lookup': {
+      'from': 'eav_values', 
+      'localField': '_id', 
+      'foreignField': 'product_id', 
+      'as': 'attr'
+    }
+  }, {
+    '$unwind': {
+      'path': '$attr'
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$attr'
+    }
+  }, {
+    '$match': {
+      'attr_name': {
+        '$nin': [
+          'Бренд', 'Тип уборки', 'Цена'
+        ]
+      }
+    }
+  }, {
+    '$group': {
+      '_id': {
+        'attr_name': '$attr_name', 
+        'attr_description': '$attr_description', 
+        'attr_value': '$attr_value', 
+        'value_description': '$value_description'
+      }, 
+      'count': {
+        '$sum': 1
+      }
+    }
+  }, {
+    '$group': {
+      '_id': {
+        'name': '$_id.attr_name', 
+        'description': '$_id.attr_description'
+      }, 
+      'values': {
+        '$push': {
+          'attr_value': '$_id.attr_value', 
+          'count': '$count'
+        }
+      }
+    }
+  }, {
+    '$project': {
+      'attr': '$_id', 
+      'values': '$values', 
+      '_id': 0
+    }
+  }
+]
+
+!!!!aggregation(text)
+[
+  {
+    $match: {
+      group: "Пылесос",
+    },
+  },
+  {
+    $match: {
+      attr_name: "Цена",
+    },
+  },
+  {
+    $addFields: {
+      price: {
+        $toInt: "$attr_value.value",
+      },
+    },
+  },
+  {
+    $match: {
+      price: {
+        $gte: 100,
+        $lte: 6000,
+      },
+    },
+  },
+  {
+    $lookup: {
+      from: "eav_values",
+      localField: "product_id",
+      foreignField: "product_id",
+      as: "result",
+    },
+  },
+  {
+    $unwind: {
+      path: "$result",
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$result",
+    },
+  },
+  {
+    $match: {
+      $or: [
+        {
+          attr_name: "Бренд",
+          "attr_value.value": "Mystery",
+        },
+        {
+          attr_name: "Тип уборки",
+          "attr_value.value": "Сухая",
+        },
+        {
+          attr_name: "Тип уборки",
+          "attr_value.value": "Паром",
+        },
+      ],
+    },
+  },
+  {
+    $group: {
+      _id: "$product_id",
+      attr: {
+        $push: "$attr_name",
+      },
+    },
+  },
+  {
+    $match: {
+      attr: {
+        $all: ["Бренд", "Тип уборки"],
+      },
+    },
+  },
+  {
+    $lookup: {
+      from: "eav_values",
+      localField: "_id",
+      foreignField: "product_id",
+      as: "attr",
+    },
+  },
+  {
+    $unwind: {
+      path: "$attr",
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$attr",
+    },
+  },
+  {
+    $match: {
+      attr_name: {
+        $nin: ["Бренд", "Тип уборки", "Цена"],
+      },
+    },
+  },
+  {
+    $group: {
+      _id: {
+        attr_name: "$attr_name",
+        attr_description: "$attr_description",
+        attr_value: "$attr_value",
+        value_description: "$value_description",
+      },
+      count: {
+        $sum: 1,
+      },
+    },
+  },
+  {
+    $group: {
+      _id: {
+        name: "$_id.attr_name",
+        description: "$_id.attr_description",
+      },
+      values: {
+        $push: {
+          attr_value: "$_id.attr_value",
+          count: "$count",
+        },
+      },
+    },
+  },
+  {
+    $project: {
+      attr: "$_id",
+      values: "$values",
+      _id: 0,
+    },
+  },
+]

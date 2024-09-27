@@ -1,0 +1,379 @@
+!!!!nodejs 
+[
+  {
+    '$match': {
+      'group': 'Пылесос'
+    }
+  }, {
+    $match: {
+      attr_name: "Цена",
+    },
+  },
+  {
+    $addFields: {
+      price: {
+        $toInt: "$attr_value.value",
+      },
+    },
+  },
+  {
+    $match: {
+      price: {
+        $gte: 100,
+        $lte: 6000,
+      },
+    },
+  }, {
+    '$lookup': {
+      'from': 'eav_values', 
+      'localField': 'product_id', 
+      'foreignField': 'product_id', 
+      'as': 'result'
+    }
+  }, {
+    '$unwind': {
+      'path': '$result'
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$result'
+    }
+  }, {
+    '$match': {
+      '$or': [
+        {
+          'attr_name': 'Бренд', 
+          'attr_value.value': 'Mystery'
+        }, {
+          'attr_name': 'Тип уборки', 
+          'attr_value.value': 'Сухая'
+        }, {
+          'attr_name': 'Тип уборки', 
+          'attr_value.value': 'Паром'
+        }
+      ]
+    }
+  }, {
+    '$group': {
+      '_id': '$product_id', 
+      'attr': {
+        '$push': '$attr_name'
+      }
+    }
+  }, {
+    '$match': {
+      'attr': {
+        '$all': [
+          'Бренд', 'Тип уборки'
+        ]
+      }
+    }
+  }, {
+    '$lookup': {
+      'from': 'eav_entities', 
+      'localField': '_id', 
+      'foreignField': '_id', 
+      'as': 'product'
+    }
+  }, {
+    '$unwind': {
+      'path': '$product'
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$product'
+    }
+  }, {
+    '$lookup': {
+      'from': 'eav_values', 
+      'localField': '_id', 
+      'foreignField': 'product_id', 
+      'as': 'attr'
+    }
+  }, {
+    '$unwind': {
+      'path': '$attr'
+    }
+  }, {
+    '$match': {
+      'attr.attr_name': 'Цена'
+    }
+  }, {
+    '$project': {
+      'group': '$group', 
+      'name': '$name', 
+      'description': '$description', 
+      'img_urls': '$img_urls', 
+      'quantity': '$quantity', 
+      'price': '$attr.attr_value.value', 
+      'rating': '$rating',
+      discount: "$discount"
+    }
+  }, {
+    '$facet': {
+      'yes': [
+        {
+          '$match': {
+            'quantity': {
+              '$gte': 1
+            }
+          }
+        }, {
+          '$sort': {
+            'price': 1
+          }
+        }
+      ], 
+      'no': [
+        {
+          '$match': {
+            'quantity': {
+              '$lte': 0
+            }
+          }
+        }
+      ]
+    }
+  }, {
+    '$project': {
+      'a': {
+        '$concatArrays': [
+          '$yes', '$no'
+        ]
+      }
+    }
+  }, {
+    '$unwind': {
+      'path': '$a'
+    }
+  }, {
+    '$replaceRoot': {
+      'newRoot': '$a'
+    }
+  }, {
+    '$facet': {
+      'products': [
+        {
+          '$skip': 0
+        }, {
+          '$limit': 10
+        }
+      ], 
+      'totalProducts': [
+        {
+          '$count': 'count'
+        }
+      ]
+    }
+  }, {
+    '$unwind': {
+      'path': '$totalProducts'
+    }
+  }, {
+    '$project': {
+      'products': 1, 
+      'totalProducts': '$totalProducts.count'
+    }
+  }
+]
+
+
+!!!!aggregation(text)
+[
+  {
+    $match: {
+      group: "Пылесос",
+    },
+  },
+  {
+    $match: {
+      attr_name: "Цена",
+    },
+  },
+  {
+    $addFields: {
+      price: {
+        $toInt: "$attr_value.value",
+      },
+    },
+  },
+  {
+    $match: {
+      price: {
+        $gte: 100,
+        $lte: 6000,
+      },
+    },
+  },
+  {
+    $lookup: {
+      from: "eav_values",
+      localField: "product_id",
+      foreignField: "product_id",
+      as: "result",
+    },
+  },
+  {
+    $unwind: {
+      path: "$result",
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$result",
+    },
+  },
+  {
+    $match: {
+      $or: [
+        {
+          attr_name: "Бренд",
+          "attr_value.value": "Mystery",
+        },
+        {
+          attr_name: "Тип уборки",
+          "attr_value.value": "Сухая",
+        },
+        {
+          attr_name: "Тип уборки",
+          "attr_value.value": "Паром",
+        },
+      ],
+    },
+  },
+  {
+    $group: {
+      _id: "$product_id",
+      attr: {
+        $push: "$attr_name",
+      },
+    },
+  },
+  {
+    $match: {
+      attr: {
+        $all: ["Бренд", "Тип уборки"],
+      },
+    },
+  },
+  {
+    $lookup: {
+      from: "eav_entities",
+      localField: "_id",
+      foreignField: "_id",
+      as: "product",
+    },
+  },
+  {
+    $unwind: {
+      path: "$product",
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$product",
+    },
+  },
+  {
+    $lookup: {
+      from: "eav_values",
+      localField: "_id",
+      foreignField: "product_id",
+      as: "attr",
+    },
+  },
+  {
+    $unwind: {
+      path: "$attr",
+    },
+  },
+  {
+    $match: {
+      "attr.attr_name": "Цена",
+    },
+  },
+  {
+    $project: {
+      group: "$group",
+      name: "$name",
+      description: "$description",
+      img_urls: "$img_urls",
+      quantity: "$quantity",
+      price: "$attr.attr_value.value",
+      rating: "$rating",
+      discount: "$discount"
+    },
+  },
+  {
+    $facet: {
+      yes: [
+        {
+          $match: {
+            quantity: {
+              $gte: 1,
+            },
+          },
+        },
+        {
+          $sort: {
+            price: 1,
+          },
+        },
+      ],
+      no: [
+        {
+          $match: {
+            quantity: {
+              $lte: 0,
+            },
+          },
+        },
+      ],
+    },
+  },
+  {
+    $project: {
+      a: {
+        $concatArrays: ["$yes", "$no"],
+      },
+    },
+  },
+  {
+    $unwind: {
+      path: "$a",
+    },
+  },
+  {
+    $replaceRoot: {
+      newRoot: "$a",
+    },
+  },
+  {
+    $facet: {
+      products: [
+        {
+          $skip: 0,
+        },
+        {
+          $limit: 10,
+        },
+      ],
+      totalProducts: [
+        {
+          $count: "count",
+        },
+      ],
+    },
+  },
+  {
+    $unwind: {
+      path: "$totalProducts",
+    },
+  },
+  {
+    $project: {
+      products: 1,
+      totalProducts: "$totalProducts.count",
+    },
+  },
+]

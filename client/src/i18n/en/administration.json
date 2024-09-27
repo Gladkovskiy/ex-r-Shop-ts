@@ -1,0 +1,65 @@
+{
+  "Registration": {
+    "Added": "Added ",
+    "User registration": "User registration",
+    "Add": "Add",
+
+    "phone number or mail address": "phone number or mail address",
+    "User removal": "User removal",
+    "Delete the user": "Delete the user",
+    "Nothing found...": "Nothing found...",
+    "Cancel": "Cancel",
+    "Delete": "Delete",
+    "Removal": "Removal"
+  },
+  "Category": {
+    "Added category": "Added category",
+    "Adding category": "Adding category",
+    "Add": "Add",
+    "Clear": "Clear",
+    "You definitely want to delete the category": "You definitely want to delete the category",
+    "All groups and goods of the category will be lost!": "All groups and goods of the category will be lost!",
+    "Removing category": "Removing category"
+  },
+  "Group": {
+    "Select the product category": "Select the product category",
+    "Added group -": "Added group -",
+    "Clear": "Clear",
+    "Add group": "Add group",
+    "Add": "Add",
+
+    "Choose the category of goods": "Choose the category of goods",
+    "You definitely want to delete the group": "You definitely want to delete the group",
+    "All groups of the group will be lost!": "All groups of the group will be lost!",
+    "Cancel": "Cancel",
+    "Delete": "Delete",
+    "Removing the group": "Removing the group"
+  },
+  "Attribute": {
+    "Choose the category of goods": "Choose the category of goods",
+    "Choose a group of goods": "Choose a group of goods",
+    "Added attribute -": "Added attribute -",
+    "Clear": "Clear",
+    "Add": "Add",
+    "Add attribute": "Add attribute",
+    "Attribute values": "Attribute values",
+    "Such a value is already present": "Such a value is already present",
+    "Meanings": "Meanings"
+  },
+  "Product": {
+    "Added goods -": "Added goods -",
+    "Clear": "Clear",
+    "Adding goods": "Adding goods",
+    "Add": "Add",
+
+    "product name": "product name",
+    "Cancel": "Cancel",
+    "Delete": "Delete",
+    "Removing goods": "Removing goods",
+    "You definitely want to delete the goods": "You definitely want to delete the goods",
+    "Something went wrong...": "Something went wrong...",
+    "Availability in warehouse:": "Availability in warehouse:",
+    "Activate discount": "Activate discount",
+    "Change of goods": "Change of goods"
+  }
+}

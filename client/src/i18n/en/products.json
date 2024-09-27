@@ -1,0 +1,19 @@
+{
+  "SettingBar": {
+    "Filters": "Filters",
+    "By rating": "By rating",
+    "From cheap to expensive": "From cheap to expensive",
+    "From expensive to cheap": "From expensive to cheap",
+    "Promotional": "Promotional"
+  },
+  "FilterBlock": {
+    "Select the filter": "Select the filter",
+    "Subtract filters": "Subtract filters",
+    "Price": "Price",
+    "Cancel": "Cancel"
+  },
+  "ProductItem": {
+    "Stock": "Stock",
+    "Not available": "Not available"
+  }
+}

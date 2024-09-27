@@ -1,0 +1,31 @@
+name: Internet shop
+
+services:
+  app:
+    image: app
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: app
+    env_file:
+      - .env
+    expose:
+      - 5000
+    networks:
+      - network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./docker/nginx/shop.conf:/etc/nginx/conf.d/shop.conf:ro
+    ports:
+      - 80:80
+    depends_on:
+      - app
+    restart: always
+    networks:
+      - network
+
+networks:
+  network:

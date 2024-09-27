@@ -1,0 +1,102 @@
+type Products_eav_value {
+  _id: ObjectId!
+  group: String!
+  product_id: ObjectId!
+  attr_name: String!
+  attr_value: Products_eav_attribute_values!
+  attr_description: DescriptionLang!
+}
+
+type Products_eav_value_productsResult {
+  _id: ObjectId!
+  group: String!
+  quantity: Int!
+  rating: Int!
+  price: Int!
+  name: DescriptionLang!
+  description: DescriptionLang!
+  img_urls: [String!]!
+  discount: Products_eav_entity_discount!
+}
+
+type Products_eav_value_productsFinelResult {
+  products: [Products_eav_value_productsResult!]!
+  totalProducts: Int!
+}
+
+type Products_eav_value_price {
+  min: Int!
+  max: Int!
+}
+
+type Products_eav_value_filterName {
+  name: String!
+  description: DescriptionLang!
+}
+
+type Products_eav_value_filterValue {
+  value: String!
+  description: DescriptionLang!
+}
+
+type Products_eav_value_filterData {
+  attr_value: Products_eav_value_filterValue!
+  count: Int!
+}
+
+type Products_eav_value_filter {
+  attr: Products_eav_value_filterName!
+  values: [Products_eav_value_filterData!]!
+}
+
+type Products_eav_value_filtersResult {
+  filters: [Products_eav_value_filter!]!
+  price: Products_eav_value_price
+}
+
+input Products_priceInput {
+  min: Int!
+  max: Int!
+}
+
+input Products_filtersInput {
+  attr_name: String!
+  attr_value: String!
+}
+
+enum ProductSort {
+  upPrice
+  downPrice
+  discount
+  rating
+}
+
+input Products_eavValue_productsInput {
+  group: String!
+  price: Products_priceInput
+  filters: [Products_filtersInput]!
+  sort: ProductSort!
+  page: Int!
+  limit: Int!
+}
+
+input Products_eavValue_filtersInput {
+  group: String!
+  price: Products_priceInput
+  filters: [Products_filtersInput]!
+}
+
+type Query {
+  products_eavValue_products_get(
+    filters: Products_eavValue_productsInput!
+  ): Products_eav_value_productsFinelResult!
+
+  products_eavValue_filters_get(
+    filters: Products_eavValue_filtersInput!
+  ): Products_eav_value_filtersResult!
+
+  """
+  поиск характеристик товара
+  """
+  products_eavValue_value_get(idProduct: ObjectId!): [Products_eav_value!]!
+}

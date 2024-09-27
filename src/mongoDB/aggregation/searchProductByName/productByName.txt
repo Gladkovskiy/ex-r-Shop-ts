@@ -1,0 +1,40 @@
+!!!!nodejs 
+[
+  {
+    $search: {
+      index: "searchProducts",
+      // text: {
+      //   query: "\"mystery без\"",
+      //   path: ["name.ru", "name.en"],
+      // },
+      phrase: {
+        query: "mystery",
+        path: ["name.ru", "name.en"],
+      },
+    },
+  },
+  {
+    $limit:
+      /**
+       * Provide the number of documents to limit.
+       */
+      5,
+  },
+]
+
+!!!!aggregation(text)
+[
+  {
+    '$search': {
+      'index': 'searchProducts', 
+      'phrase': {
+        'query': 'mystery', 
+        'path': [
+          'name.ru', 'name.en'
+        ]
+      }
+    }
+  }, {
+    '$limit': 5
+  }
+]

@@ -1,0 +1,21 @@
+type Settings_category {
+  _id: ObjectId!
+  description: DescriptionLang!
+  type: String!
+  img_path: String!
+}
+
+input Settings_category_add {
+  description: DescriptionLang_add!
+  type: String!
+  img_path: String!
+}
+
+type Query {
+  settings_category_getAll: [Settings_category!]!
+}
+
+type Mutation {
+  settings_category_add(category: Settings_category_add!): Settings_category!
+  settings_category_delete(id: ObjectId!): IdResponse!
+}

@@ -1,0 +1,30 @@
+{
+  "searchBar": {
+    "search": "Найти",
+    "looking for": "Я ишу...",
+    "Nothing found...": "Ничего не найдено...",
+    "Search for products by the word": "Поиск продукции по слову:",
+    "Categories": "Категории:"
+  },
+  "userModal": {
+    "Personal Area": "Личный кабинет",
+    "Exit": "Выход"
+  },
+  "Basket": {
+    "Basket": "Корзина",
+    "Checkout": "Оформить заказ",
+    "Total": "Итого",
+    "Price": "Цена",
+    "delete product": "удалить товар",
+    "the basket is empty": "Корзина пуста...",
+    "but its never too late to fix it": "Но это никогда не поздно исправить :)"
+  },
+  "Order": {
+    "Ordering of the order": "Оформление заказа",
+    "Back": "Назад",
+    "Confirm the order": "Подтвердить заказ",
+    "Thanks for your order": "Спасибо за ваш заказ",
+    "Our operator will contact you to confirm the order": "С вами свяжется наш оператор, для подтверждения заказа",
+    "Continue purchases": "Продолжить покупки"
+  }
+}

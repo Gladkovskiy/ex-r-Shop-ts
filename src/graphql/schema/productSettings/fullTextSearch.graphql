@@ -1,0 +1,25 @@
+type Settings_fullTextSearch {
+  id: ObjectId!
+  text: String!
+}
+
+type Settings_fullTextSearch_groupesResult {
+  type: String!
+  description: DescriptionLang!
+}
+
+type Settings_fullTextSearch_result {
+  phrases: [String!]!
+  groupes: [Settings_fullTextSearch_groupesResult!]!
+}
+
+type Query {
+  settings_fullTextSearch_get(
+    searchText: String!
+  ): Settings_fullTextSearch_result!
+}
+
+type Mutation {
+  settings_fullTextSearch_add(text: String!): IdResponse
+  settings_fullTextSearch_delete(text: String!): Complete
+}

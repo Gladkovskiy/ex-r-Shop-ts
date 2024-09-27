@@ -1,0 +1,14 @@
+{
+  "Buy": {
+    "Add to Basket": "Добавить в карзину",
+    "This product is already in the basket": "Этот товар уже в корзине",
+    "The goods have been legal": "Товар закончился"
+  },
+  "Photo": {
+    "Stock": "Акция"
+  },
+  "Comments": {
+    "Advantages": "Достоинства",
+    "Flaws": "Недостатки"
+  }
+}

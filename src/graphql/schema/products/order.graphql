@@ -1,0 +1,67 @@
+enum OrderStatus {
+  new
+  confirm
+  complete
+  cancel
+}
+
+type Products_order_product {
+  product_id: ObjectId!
+  name: String!
+  price: Int!
+  quantity: Int!
+}
+
+type Products_order {
+  _id: ObjectId!
+  orderNumber: Int!
+  fio: String!
+  tel: String!
+  adress: String!
+  status: OrderStatus!
+  products: [Products_order_product!]!
+  totalPrice: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Products_order_newCount {
+  count: Int!
+}
+
+input Product_order_product_input {
+  product_id: ObjectId!
+  name: String!
+  price: Int!
+  quantity: Int!
+}
+
+input Products_order_input {
+  fio: String!
+  tel: String!
+  adress: String!
+  products: [Product_order_product_input!]!
+}
+
+input Products_order_cancel_input {
+  id: ObjectId!
+  products: [Product_order_product_input!]!
+}
+
+type Query {
+  products_order_getNewCount: Products_order_newCount!
+  products_order_getNew(pagination: Pagination_input!): [Products_order!]!
+  products_order_getForNumber(orderNumber: Int!): Products_order
+}
+
+type Mutation {
+  products_order_add(order: Products_order_input!): Products_order!
+  products_order_delete(id: ObjectId!): IdResponse
+  products_order_confirm(id: ObjectId!): Products_order!
+  products_order_cancel(id: ObjectId!): Products_order!
+  products_order_comlete(id: ObjectId!): Products_order!
+  products_order_update(
+    id: ObjectId!
+    order: Products_order_input!
+  ): Products_order!
+}

@@ -1,0 +1,5 @@
+scalar BigInt
+scalar ObjectId
+scalar DateTime
+scalar Void
+scalar Upload

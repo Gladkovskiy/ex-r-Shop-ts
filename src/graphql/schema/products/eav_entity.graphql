@@ -1,0 +1,103 @@
+type Products_eav_entity_discount {
+  active: Boolean!
+  oldPrice: String!
+}
+
+type Products_eav_entity {
+  _id: ObjectId!
+  group: String!
+  quantity: Int!
+  rating: Int!
+  name: DescriptionLang!
+  description: DescriptionLang!
+  img_urls: [String!]!
+  discount: Products_eav_entity_discount!
+  searchTag: String!
+}
+
+type Products_eav_entity_get {
+  product: Products_eav_entity!
+  price: Int!
+}
+
+type Products_eav_entity_groupsResult {
+  type: String!
+  description: DescriptionLang!
+}
+
+type Products_eav_entity_productsResult {
+  products: [Products_eav_value_productsResult]!
+  totalProducts: Int!
+}
+
+type Products_eav_entity_globalSearchResult {
+  products: [Products_eav_value_productsResult!]!
+  totalProducts: Int!
+  groups: [Products_eav_entity_groupsResult!]!
+}
+
+input Products_eav_entity_filterValue_input {
+  value: String!
+  description: DescriptionLang_add
+}
+
+input Products_eav_entity_filter_input {
+  attr_name: String!
+  attr_value: Products_eav_entity_filterValue_input!
+  attr_description: DescriptionLang_add!
+}
+
+input Products_eav_entity_input {
+  group: String!
+  quantity: Int!
+  name: DescriptionLang_add!
+  description: DescriptionLang_add!
+  img_urls: [String!]
+  searchTag: String!
+  filters: [Products_eav_entity_filter_input!]!
+}
+
+input Products_eav_entity_update_input {
+  id: ObjectId!
+  active: Boolean!
+  newPrice: String!
+  oldPrice: String!
+  """
+  "+" add quantity, "-" sub quantity
+  """
+  quantity: Int!
+}
+
+input Products_eav_entity_searchProducts_input {
+  searchText: String!
+  sort: ProductSort!
+  page: Int!
+  limit: Int!
+}
+
+type Mutation {
+  products_eav_entity_add(
+    product: Products_eav_entity_input!
+  ): Products_eav_entity!
+  products_eav_entity_delete(id: ObjectId!): IdResponse
+  products_eav_entity_update(
+    product: Products_eav_entity_update_input!
+  ): Products_eav_entity!
+}
+
+type Query {
+  """
+  поиска товара для обновлениея заказа
+  """
+  products_eav_entity_getByName(name: String!): [Products_eav_entity!]!
+  """
+  выбор из списка для одиночного отображения товара
+  """
+  products_eav_entity_getById(id: ObjectId!): Products_eav_entity_get!
+  """
+  глобальный поиск товара
+  """
+  products_eav_entity_globalSearch(
+    search: Products_eav_entity_searchProducts_input!
+  ): Products_eav_entity_globalSearchResult!
+}

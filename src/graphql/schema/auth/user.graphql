@@ -1,0 +1,70 @@
+type Auth_user {
+  _id: ObjectId!
+  fullname: String!
+  tel: String!
+  mail: String!
+  password: String!
+  role: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Auth_user_paginationAll {
+  count: Int!
+  users: [Auth_user]!
+}
+
+type Auth_user_loginData {
+  id: ObjectId
+  role: String!
+  login: String!
+  tel: String!
+}
+
+input Auth_user_registration {
+  fullname: String!
+  tel: String!
+  mail: String!
+  password: String!
+}
+
+input Auth_user_adminRegistration {
+  fullname: String!
+  tel: String!
+  mail: String!
+  password: String!
+  role: String!
+}
+
+input Auth_user_update {
+  _id: ObjectId!
+  fullname: String!
+  tel: String!
+  mail: String!
+}
+
+input Auth_user_newPass {
+  _id: ObjectId!
+  pass: String!
+}
+
+type Query {
+  auth_user_getAll(page: Int!, limit: Int!): Auth_user_paginationAll!
+  auth_user_getOne(id: ObjectId!): Auth_user!
+  auth_user_search(text: String!): [Auth_user!]!
+
+  auth_user_checkToken: Auth_user_loginData!
+}
+
+type Mutation {
+  auth_user_registration(user: Auth_user_registration!): Auth_user
+  ayth_user_confirmRegistration(id: ObjectId!): Auth_user
+  auth_user_adminRegistration(user: Auth_user_adminRegistration!): Auth_user
+
+  auth_user_delete(id: ObjectId!): IdResponse
+  auth_user_update(user: Auth_user_update!): Auth_user
+  auth_user_newPass(newPass: Auth_user_newPass!): IdResponse!
+
+  auth_user_logout: Void
+  auth_user_login(login: String!, pass: String!): Auth_user_loginData!
+}

@@ -1,0 +1,23 @@
+type Settings_group {
+  _id: ObjectId!
+  category: String!
+  type: String!
+  description: DescriptionLang!
+  img_path: String!
+}
+
+input Settings_group_add {
+  category: String!
+  type: String!
+  description: DescriptionLang_add!
+  img_path: String!
+}
+
+type Query {
+  settings_group_get(category: String!): [Settings_group!]!
+}
+
+type Mutation {
+  settings_group_add(group: Settings_group_add!): Settings_group!
+  settings_group_delete(id: ObjectId!): IdResponse!
+}

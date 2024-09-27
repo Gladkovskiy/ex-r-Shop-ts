@@ -1,0 +1,56 @@
+---nodejs
+[
+  {
+    '$search': {
+      'index': 'searchProducts', 
+      'phrase': {
+        'query': 'пылесос без мешка ', 
+        'path': [
+          'searchTag'
+        ]
+      }
+    }
+  }, {
+    '$group': {
+      '_id': '$group'
+    }
+  }, {
+    '$project': {
+      'group': '$_id', 
+      '_id': 0
+    }
+  }, {
+    '$sort': {
+      'group': 1
+    }
+  }
+]
+
+---agregation text
+[
+  {
+    $search: {
+      index: "searchProducts",
+      phrase: {
+        query: "пылесос без мешка ",
+        path: ["searchTag"],
+      },
+    },
+  },
+  {
+    $group: {
+      _id: "$group",
+    },
+  },
+  {
+    $project: {
+      group: "$_id",
+      _id: 0,
+    },
+  },
+  {
+    $sort: {
+      group: 1,
+    },
+  },
+]

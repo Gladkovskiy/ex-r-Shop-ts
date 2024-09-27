@@ -1,0 +1,22 @@
+type Auth_role {
+  _id: ObjectId!
+  type: String!
+}
+
+type Query {
+  """
+  получить все поли
+  """
+  auth_role_getAll: [Auth_role!]!
+}
+
+type Mutation {
+  """
+  добавить роль
+  """
+  auth_role_add(role: String!): Auth_role!
+  """
+  удалить роль по id
+  """
+  auth_role_delete(id: ObjectId!): IdResponse
+}

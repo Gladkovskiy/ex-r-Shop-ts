@@ -1,0 +1,65 @@
+{
+  "Registration": {
+    "Added": "Добавлен ",
+    "User registration": "Регистрация пользователя",
+    "Add": "Добавить",
+
+    "phone number or mail address": "номер телефона или адрес почты",
+    "User removal": "Удаление пользователя",
+    "Delete the user": "Удалить пользователя",
+    "Nothing found...": "Ничего не найдено...",
+    "Cancel": "Отмена",
+    "Delete": "Удалить",
+    "Removal": "Удаление"
+  },
+  "Category": {
+    "Added category": "Добавлена категория",
+    "Adding category": "Добавление категории",
+    "Add": "Добавить",
+    "Clear": "Очистить",
+    "You definitely want to delete the category": "Вы точно хотите удалить категрию",
+    "All groups and goods of the category will be lost!": "Все группы и товары категории будут утеряны!",
+    "Removing category": "Удаление категории"
+  },
+  "Group": {
+    "Select the product category": "Выберите категорию товара",
+    "Added group -": "Добавлена группа -",
+    "Clear": "Очистить",
+    "Add group": "Добавление группы",
+    "Add": "Добавить",
+
+    "Choose the category of goods": "Choose the category of goods",
+    "You definitely want to delete the group": "You definitely want to delete the group",
+    "All groups of the group will be lost!": "All groups of the group will be lost!",
+    "Cancel": "Cancel",
+    "Delete": "Delete",
+    "Removing the group": "Removing the group"
+  },
+  "Attribute": {
+    "Choose the category of goods": "Выберите категорию товара",
+    "Choose a group of goods": "Выберите группу товара",
+    "Added attribute -": "Добавлен атрибут -",
+    "Clear": "Очитстить",
+    "Add": "Добавить",
+    "Add attribute": "Добавление атрибута",
+    "Attribute values": "Значения атрибута",
+    "Such a value is already present": "Такое значение уже присутствует",
+    "Meanings": "Значения"
+  },
+  "Product": {
+    "Added goods -": "Добавлен товар -",
+    "Clear": "Очистить",
+    "Adding goods": "Добавление товара",
+    "Add": "Добавить",
+
+    "product name": "название товара",
+    "Cancel": "Отмена",
+    "Delete": "Удалить",
+    "Removing goods": "Удаление товара",
+    "You definitely want to delete the goods": "Вы точно хоитет удалить товар",
+    "Something went wrong...": "Что-то пошло не так...",
+    "Availability in warehouse:": "Наличие на сладе:",
+    "Activate discount": "Активировать дисконт",
+    "Change of goods": "Изменение товара"
+  }
+}

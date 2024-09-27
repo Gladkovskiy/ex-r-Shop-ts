@@ -1,0 +1,19 @@
+{
+  "SettingBar": {
+    "Filters": "Фильтры",
+    "By rating": "По рейтингу",
+    "From cheap to expensive": "От дешёвых к дорогим",
+    "From expensive to cheap": "От дорогих к дешёвым",
+    "Promotional": "Акционные"
+  },
+  "FilterBlock": {
+    "Select the filter": "Выберите фильтр",
+    "Subtract filters": "Сбросить фильтры",
+    "Price": "Цена",
+    "Cancel": "Отмена"
+  },
+  "ProductItem": {
+    "Stock": "Акция",
+    "Not available": "Нет в наличии"
+  }
+}

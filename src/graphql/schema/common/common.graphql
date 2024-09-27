@@ -1,0 +1,22 @@
+type Complete {
+  complete: Boolean
+}
+
+type IdResponse {
+  id: ObjectId
+}
+
+type DescriptionLang {
+  ru: String!
+  en: String!
+}
+
+input Pagination_input {
+  page: Int!
+  limit: Int!
+}
+
+input DescriptionLang_add {
+  ru: String!
+  en: String!
+}

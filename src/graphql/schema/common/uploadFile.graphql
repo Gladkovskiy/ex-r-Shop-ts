@@ -1,0 +1,26 @@
+type UploadFile_success {
+  success: Boolean!
+  errorMessage: String
+}
+
+input UploadFile_add {
+  path: String!
+  img: Upload!
+}
+
+input UploadFiles_add {
+  path: [String!]!
+  imgs: [Upload!]!
+}
+
+enum SaveType {
+  group
+  category
+  product
+}
+
+type Mutation {
+  uploadFile_add(file: UploadFile_add!): UploadFile_success!
+  uploadFiles_add(files: [Upload!]!, path: [String!]!): UploadFile_success!
+  uploadFilesToGoogle(files: [Upload!]!, path: SaveType!): [String!]!
+}

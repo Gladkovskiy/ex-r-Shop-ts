@@ -1,0 +1,14 @@
+{
+  "Buy": {
+    "Add to Basket": "Add to Basket",
+    "This product is already in the basket": "This product is already in the basket",
+    "The goods have been legal": "The goods have been legal"
+  },
+  "Photo": {
+    "Stock": "Stock"
+  },
+  "Comments": {
+    "Advantages": "Advantages",
+    "Flaws": "Flaws"
+  }
+}
